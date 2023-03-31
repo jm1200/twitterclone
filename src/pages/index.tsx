@@ -1,14 +1,11 @@
-import { SignIn, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-
-import { api, RouterOutputs } from "~/utils/api";
 import Image from "next/image";
-import { LoadingPage, LoadingSpinner } from "../components/loading";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { api } from "~/utils/api";
 import { PageLayout } from "../components/layout";
+import { LoadingPage, LoadingSpinner } from "../components/loading";
 import { PostView } from "../components/postview";
 
 const CreatePostWizard = () => {
@@ -87,7 +84,7 @@ const Feed = () => {
 };
 
 const Home: NextPage = () => {
-  const { user, isLoaded: userLoaded, isSignedIn } = useUser();
+  const { isLoaded: userLoaded, isSignedIn } = useUser();
 
   api.posts.getAll.useQuery();
   if (!userLoaded) return <div />;
